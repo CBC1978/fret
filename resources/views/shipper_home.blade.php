@@ -84,7 +84,6 @@
                       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-25">
                         <h3>Offres récentes de transports </h3>
                       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-10">
-                        <h3>Annonces récentes de transports </h3>
                       </div>
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 20px;">
                             <input type="text" id="recherche" placeholder="Recherchez une annonce">
