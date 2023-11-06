@@ -3,7 +3,7 @@
     use App\Http\Controllers\CarController;
 
     use App\Http\Controllers\Admin\profile\AdminProfileController1;
-    use App\Http\Controllers\shipper\profile\ShipperProfileController1;
+    use App\Http\Controllers\Shipper\profile\ShipperProfileController1;
     use Illuminate\Support\Facades\Route;
     use Illuminate\Support\Facades\Auth;
 
@@ -16,10 +16,10 @@
     use App\Http\Controllers\Admin\AdminUserGestionController;
     use App\Http\Controllers\Admin\EntrepriseGestionController;
     use App\Http\Controllers\Admin\AdminController;
-    use App\Http\Controllers\carrier\profile\CarrierProfileController;
-    use App\Http\Controllers\shipper\profile\ShipperProfile1Controller;
-    use App\Http\Controllers\carrier\parameter\CarrierSettingsController;
-    use App\Http\Controllers\admin\parameter\AdminSettingsController;
+    use App\Http\Controllers\Carrier\profile\CarrierProfileController;
+    use App\Http\Controllers\Shipper\profile\ShipperProfile1Controller;
+    use App\Http\Controllers\Carrier\parameter\CarrierSettingsController;
+    use App\Http\Controllers\Admin\parameter\AdminSettingsController;
 
     use App\Http\Controllers\Shipper\Offers\S_MyOfferController;
 

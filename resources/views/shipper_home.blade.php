@@ -32,7 +32,7 @@
                   <h3>{{$countFreightAnnouncement}}<span class="font-sm status up">7<span>%</span></span>
                   </h3>
                 </div>
-                <p class="color-text-paragraph-2">Nombre d'annonce</p>
+                <p class="color-text-paragraph-2">Nombre d'offre</p>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
                   <h3>{{$countFreightOffer}}<span class="font-sm status up">12<span>%</span></span>
                   </h3>
                 </div>
-                <p class="color-text-paragraph-2">Nombre d'offres</p>
+                <p class="color-text-paragraph-2">Nombre d'offres Reçus</p>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
                   <div class="box-title">
                     <div class="row">
                       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-25">
-                        <h3>Annonces récentes de transports </h3>
+                        <h3>Offres récentes de transports </h3>
                       </div>
                     </div>
                   </div>

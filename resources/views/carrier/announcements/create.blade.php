@@ -25,7 +25,7 @@
 <div class="box-content">
     <div class="box-heading">
         <div class="box-title">
-            <h3 class="mb-35">Ajouter une Annonce de Transport</h3>
+            <h3 class="mb-35">Ajouter une Offre de Transport</h3>
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                 
@@ -39,8 +39,8 @@
         <div class="box-breadcrumb">
             <div class="breadcrumbs">
                 <ul>
-                    <li> <a class="icon-home" href="index.html">Annonce de Transport</a></li>
-                    <li><span>Ajout d'Annonce de Transport</span></li>
+                    <li> <a class="icon-home" href="index.html">Offre de Transport</a></li>
+                    <li><span>Ajout d'offre de Transport</span></li>
                 </ul>
             </div>
         </div>
@@ -61,7 +61,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="">Fait une Annonce de Transport</h5>
+                                                            <h5 class="">Fait une Offre de Transport</h5>
                                                             <form method="POST" action="{{ route('carrier.announcements.store') }}">
                                                                 @csrf
                                                             
@@ -160,7 +160,7 @@
                                                 </div>
                         
                                                
-                                                    <button type="submit" class="btn btn-primary">Ajouter l'annonce</button>
+                                                    <button type="submit" class="btn btn-primary">Ajouter l'offre</button>
                                               
                                             </form>
                                         </div>

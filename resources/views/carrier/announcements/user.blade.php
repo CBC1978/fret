@@ -30,7 +30,7 @@
             <div class="breadcrumbs">
                 <ul>
                     <li> <a class="icon-home" href="#">Tableau de bord</a></li>
-                    <li><span>Mes annonces</span></li>
+                    <li><span>Mes Offres</span></li>
                 </ul>
             </div>
         </div>
@@ -46,7 +46,7 @@
                                     <div class="box-title">
                                         <div class="row">
                                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-10">
-                                                <h3>Mes annonces de transport</h3>
+                                                <h3>Mes offres de transport</h3>
                                             </div>
                                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                 <input type="text" id="recherche" placeholder="Recherchez une annonce">

@@ -24,7 +24,7 @@
 <div class="box-content">
     <div class="box-heading">
         <div class="box-title">
-            <h3 class="mb-35">Ajouter une Annonce de Fret</h3>
+            <h3 class="mb-35">Ajouter une Offre de Fret</h3>
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                 
@@ -37,8 +37,8 @@
         <div class="box-breadcrumb">
             <div class="breadcrumbs">
                 <ul>
-                    <li><a class="icon-home" >Annonce de Fret</a></li>
-                    <li><span>Ajouter une Annonce de Fret</span></li>
+                    <li><a class="icon-home" >Offre de Fret</a></li>
+                    <li><span>Ajouter une Offre de Fret</span></li>
                 </ul>
             </div>
         </div>
@@ -58,7 +58,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="">Fait une Annonce de Fret</h5>
+                                                            <h5 class="">Fait une Offre de Fret</h5>
                                                             <form method="POST" action="{{ route('shipper.announcements.store') }}">
                                                                 @csrf
                                                                 
@@ -171,7 +171,7 @@
                                                                 </div>
                                                                 
                                                                 <div class="form-group">
-                                                                    <button type="submit" class="btn btn-primary">Ajouter l'annonce</button>
+                                                                    <button type="submit" class="btn btn-primary">Ajouter l'offre</button>
                                                                 </div>
     
                                                             </form>
