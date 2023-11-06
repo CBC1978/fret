@@ -25,13 +25,13 @@
 <div class="box-content">
     <div class="box-heading">
         <div class="box-title">
-            <h3 class="mb-35">Annonces de Transport</h3>
+            <h3 class="mb-35">Offres de Transport</h3>
         </div>
         <div class="box-breadcrumb">
             <div class="breadcrumbs">
                 <ul>
                     <li><a class="icon-home" href="index.html">Dashboard</a></li>
-                    <li><span>Annonces de Transport</span></li>
+                    <li><span>Mes offres de Transport</span></li>
                 </ul>
             </div>
         </div>
@@ -57,7 +57,7 @@
                                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
                                                         <div class="card-grid-2 hover-up">
                                                             <div class="card-grid-2-image-left"><span class="flash"></span>
-                                                                <div class="image-box"><img src="{{ asset('imgs/brands/brand-1.png')}}" alt="jobBox"></div>
+                                                                <div class="image-box"><img src="" alt=""></div>
                                                                 <div class="right-info"><a class="name-job" href="{{ route('shipper.announcements.show', ['id' => $announce->id]) }}">{{ $announce->company_name }}</a>
                                                                     {{-- <span class="location-small">New York, US</span> --}}
                                                                 </div>
@@ -71,7 +71,7 @@
                                                                 <div class="card-2-bottom mt-30">
                                                                     <div class="row">
                                                                         <div class="col-lg-5 col-5 text-end">
-                                                                            <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm{{$announce->id}}">Postuler</div>
+                                                                            <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm{{$announce->id}}">Postuler à l'offre</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -85,7 +85,7 @@
                                                                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 <div class="modal-body pl-30 pr-30 pt-50">
                                                                     <div class="text-center">
-                                                                        <p class="font-sm text-brand-2">POSTULER A L'ANNONCE </p>
+                                                                        <p class="font-sm text-brand-2">POSTULER A L'Offre </p>
                                                                         @if(session('success'))
                                                                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                                             

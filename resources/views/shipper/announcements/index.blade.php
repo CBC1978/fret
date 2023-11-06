@@ -29,7 +29,7 @@
         <div class="breadcrumbs">
             <ul>
                 <li> <a class="icon-home" href="">Tableau de bord</a></li>
-                <li><span>Annonces</span></li>
+                <li><span>offres</span></li>
             </ul>
         </div>
     </div>
@@ -46,7 +46,7 @@
                                 <div class="box-title">
                                     <div class="row">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-10">
-                                            <h3>Annonces de fret</h3>
+                                            <h3>Offres de fret</h3>
                                         </div>
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                             <input type="text" id="recherche" placeholder="Recherchez une annonce">
@@ -60,7 +60,7 @@
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12" id="card_annonce">
                                         <div class="card-grid-2 hover-up">
                                             <div class="card-grid-2-image-left"><span class="flash"></span>
-                                                <div class="image-box"><img src=" {{ asset('imgs/brands/brand-1.png') }}" alt="jobBox"></div>
+                                                <div class="image-box"><img src=" " alt=""></div>
                                                 <div class="right-info"><a class="name-job" href="{{ route('carrier.announcements.show', ['id' => $announce->id]) }}">{{ $announce->company_name }}</a>
                                                     {{-- <span class="location-small">New York, US</span> --}}
                                                 </div>
@@ -88,7 +88,7 @@
                                                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 <div class="modal-body pl-30 pr-30 pt-50">
                                                     <div class="text-center">
-                                                        <p class="font-sm text-brand-2">POSTULER A L'ANNONCE </p>
+                                                        <p class="font-sm text-brand-2">POSTULER A L'Offre </p>
                                                         <h2 class="mt-10 mb-5 text-brand-1 text-capitalize">Faites une proposition</h2>
                                                         <p class="font-sm text-muted mb-30">Entrer les des information clair et valide pour multiplier vos chances</p>
                                                     </div>

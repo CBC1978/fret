@@ -23,13 +23,13 @@
 </style>
 <div class="box-heading">
     <div class="box-title">
-        <h3 class="mb-3">Mes annonces de fret</h3>
+        <h3 class="mb-3">Mes offres de fret</h3>
     </div>
     <div class="box-breadcrumb">
         <div class="breadcrumbs">
             <ul>
                 <li> <a class="icon-home" href="#">Tableau de bord</a></li>
-                <li><span>Mes annonces</span></li>
+                <li><span>Mes Offres</span></li>
             </ul>
         </div>
     </div>

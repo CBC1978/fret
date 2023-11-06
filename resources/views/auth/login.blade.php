@@ -50,6 +50,9 @@
                           <div class="col-lg-6 col-md-4 col-sm-12 mx-auto">
                             <div class="form-login-cover">
                               <div class="text-center">
+                            <div class="image-box"><img src="src/imgs/brands/logo-cbc.png" alt="jobBox"></div>
+                                <h2 class="font-sm text-brand-2">Bienvenue</h2>
+                                <h2 class="mt-10 mb-5 text-brand-1">CONNEXION</h2>
                                 <p class="font-sm text-brand-2">Se connecter</p>
                                 <p class="font-sm text-muted mb-30">Connectez vous et faites de bonnes affaires.</p>
                                 <form class="login-register text-start mt-20" method="post" action="{{ route('loginUser') }}">
@@ -84,7 +87,7 @@
                                   </label><a class="text-muted" href="#">Mot de passe oublié</a>
                                 </div>
                                 <div class="form-group">
-                                  <button class="btn btn-brand-1 hover-up w-100" type="submit" name="login">Connecter</button>
+                                  <button class="btn btn-brand-1 hover-up w-100" type="submit" name="login">Connectez-Vous</button>
                                 </div>
                                 <div class="text-muted text-center">Vous n'avez pas de compte ? <a  href="{{ route('register') }}">S'inscrire</a></div>
                               </form>
