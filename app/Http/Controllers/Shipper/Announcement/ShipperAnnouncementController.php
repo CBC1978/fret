@@ -118,7 +118,9 @@ class ShipperAnnouncementController extends Controller
 
    public function displayAnnouncementForm()
    {
-       return view('shipper.announcements.create');
+       $villes = DB::table('ville')
+           ->get();
+       return view('shipper.announcements.create',compact('villes'));
    }
 
 
