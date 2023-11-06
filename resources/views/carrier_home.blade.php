@@ -84,7 +84,7 @@
                               <h3>Annonces de fret récentes</h3>
                           </div>
                           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 20px;">
-                          <input type="text" id="recherche" placeholder="Recherchez une annonce">
+                            <input type="text" id="recherche" placeholder="Recherchez une annonce">
                           </div>
                       </div>
                   </div>
@@ -161,15 +161,6 @@
                           </div>
                       </div>
                     @endforeach
-
-
-                      <style>
-                      .required {
-                        color: red;
-                        margin-left: 4px; /* Espacement entre le texte et l'étoile */
-                      }
-
-                    </style>
             </div>
           </div>
         </div>
