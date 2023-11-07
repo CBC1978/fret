@@ -76,7 +76,7 @@
                   <div class="menu-box">
                     <a>
                         <img src="{{ asset('src/imgs/page/dashboard/candidates.svg') }}" alt="jobBox">
-                        <span class="name">entreprise</span>
+                        <span class="name">Entreprise</span>
                     </a>
                   </div>
                   <ul class="sub-menu">
@@ -130,7 +130,7 @@
           <div class="menu-box">
             <a>
                 <img src="{{ asset('src/imgs/page/dashboard/candidates.svg') }}" alt="jobBox">
-                <span class="name">entreprise</span>
+                <span class="name">Entreprise</span>
             </a>
           </div>
           <ul class="sub-menu">

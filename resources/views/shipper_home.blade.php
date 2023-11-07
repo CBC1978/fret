@@ -122,8 +122,10 @@
                                                           <div class="row">
                                                               {{-- <div class="col-lg-7 col-7"><span class="card-text-price">250.500</span><span class="text-muted">F</span></div> --}}
                                                               <div class="col-lg-5 col-5 text-end">
+                                                                @if(Session::get('fk_shipper_id') != 0)
                                                                   <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm{{$transport->id}}">Postuler</div>
-                                                              </div>
+                                                                @endif
+                                                                </div>
                                                           </div>
                                                       </div>
                                                   </div>
@@ -132,7 +134,6 @@
                                       </td>
                                   </tr>
                               </tbody>
-
 
                         <div class="modal fade" id="ModalApplyJobForm{{$transport->id}}" tabindex="-1" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
