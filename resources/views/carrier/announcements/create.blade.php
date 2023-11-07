@@ -25,13 +25,11 @@
 <div class="box-content">
     <div class="box-heading">
         <div class="box-title">
-            <h3 class="mb-35">Ajouter une Annonce de Transport</h3>
+            <h3 class="mb-35">Ajouter une Offre de Transport</h3>
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                
-                        <h5>  {{ session('success') }}</h5>
-                        <span aria-hidden="true">&times;</span>
-                
+                    <h5>  {{ session('success') }}</h5>
+                    <span aria-hidden="true">&times;</span>
                 </div>
             @endif
 
@@ -39,8 +37,8 @@
         <div class="box-breadcrumb">
             <div class="breadcrumbs">
                 <ul>
-                    <li> <a class="icon-home" href="index.html">Annonce de Transport</a></li>
-                    <li><span>Ajout d'Annonce de Transport</span></li>
+                    <li> <a class="icon-home" href="#">Offre de Transport</a></li>
+                    <li><span>Ajout d'offre de Transport</span></li>
                 </ul>
             </div>
         </div>
@@ -61,27 +59,21 @@
                                                 <div class="col-lg-9">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="">Fait une Annonce de Transport</h5>
+                                                            <h5 class="">Fait une Offre de Transport</h5>
                                                             <form method="POST" action="{{ route('carrier.announcements.store') }}">
                                                                 @csrf
-                                                            
                                                                 <input type="hidden" name="user_id" value="{{ session('userId') }}">
                                                                 <input type="hidden" name="fk_carrier_id" value="{{ session('fk_carrier_id') }}">
-                                                            
+
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group mb-30">
                                                                             <label for="origin">Lieu de départ</label>
                                                                             <select id="origin" class="form-control @error('origin') is-invalid @enderror" name="origin" required>
-                                                                                <option value="">Sélectionnez un lieu</option>
-                                                                                <option value="Ouagadougou">Ouagadougou</option>
-                                                                                <option value="Bobo-Dioulasso">Bobo-Dioulasso</option>
-                                                                                <option value="Koudougou">Koudougou</option>
-                                                                                <option value="Banfora">Banfora</option>
-                                                                                <option value="Dédougou">Dédougou</option>
-                                                                                <option value="Ouahigouya">Ouahigouya</option>
-                                                                                <option value="Fada N'gourma">Fada N'gourma</option>
-                                                                                <option value="Tenkodogo">Tenkodogo</option>
+                                                                                <option value="" disabled selected>Sélectionnez un lieu</option>
+                                                                                @foreach($villes as $ville)
+                                                                                    <option value="{{ $ville->libelle }}">{{ $ville->libelle }}</option>
+                                                                                @endforeach
                                                                             </select>
                                                                             @error('origin')
                                                                             <span class="invalid-feedback" role="alert">
@@ -94,15 +86,10 @@
                                                                         <div class="form-group mb-30">
                                                                             <label for="destination">Lieu de destination</label>
                                                                             <select id="destination" class="form-control @error('destination') is-invalid @enderror" name="destination" required>
-                                                                                <option value="">Sélectionnez un lieu</option>
-                                                                                <option value="Ouagadougou">Ouagadougou</option>
-                                                                                <option value="Bobo-Dioulasso">Bobo-Dioulasso</option>
-                                                                                <option value="Koudougou">Koudougou</option>
-                                                                                <option value="Banfora">Banfora</option>
-                                                                                <option value="Dédougou">Dédougou</option>
-                                                                                <option value="Ouahigouya">Ouahigouya</option>
-                                                                                <option value="Fada N'gourma">Fada N'gourma</option>
-                                                                                <option value="Tenkodogo">Tenkodogo</option>
+                                                                                <option value="" disabled selected>Sélectionnez un lieu</option>
+                                                                                @foreach($villes as $ville)
+                                                                                    <option value="{{ $ville->libelle }}">{{ $ville->libelle }}</option>
+                                                                                @endforeach
                                                                             </select>
                                                                             @error('destination')
                                                                             <span class="invalid-feedback" role="alert">
@@ -147,8 +134,8 @@
                                                                     </div>
                                                                     <!-- Ajoutez d'autres champs côte à côte ici si nécessaire -->
                                                                 </div>
-                                                                
-                        
+
+
                                                 <div class="form-group">
                                                     <label for="description">Description<span class="required">*</span></label>
                                                     <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required>{{ old('description') }}</textarea>
@@ -158,10 +145,17 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                        
-                                               
+<<<<<<< HEAD
+
+
                                                     <button type="submit" class="btn btn-primary">Ajouter l'annonce</button>
-                                              
+
+=======
+
+
+                                                    <button type="submit" class="btn btn-primary">Ajouter l'offre</button>
+
+>>>>>>> d5c17fdfefe77414508930cdc3bdb99c9b6493a9
                                             </form>
                                         </div>
                                     </div>
@@ -210,7 +204,7 @@
     </style>
     <script>
         $(document).ready(function() {
-            
+
             $('.alert').delay(4000).fadeOut(400, function() {
                 $(this).alert('close');
             });

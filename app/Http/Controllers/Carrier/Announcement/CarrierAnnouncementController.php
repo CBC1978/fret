@@ -86,7 +86,9 @@ class CarrierAnnouncementController extends Controller
    // Affiche le formulaire d'ajout d'annonce
    public function displayAnnouncementForm()
    {
-       return view('carrier.announcements.create');
+       $villes = DB::table('ville')
+           ->get();
+       return view('carrier.announcements.create',compact('villes'));
    }
 
    // Traitement de la soumission du formulaire d'ajout
@@ -183,9 +185,6 @@ class CarrierAnnouncementController extends Controller
 
         // Récupérez toutes les offres de transport liées à ce transporteur
         $offers = TransportOffer::where('fk_carrier_id', $carrierId)->get();
-//        dd($offers);
-
-
         $offers = TransportOffer::where('fk_carrier_id', $carrierId)->get();
 
         $offers = TransportOffer::where('fk_carrier_id', $carrierId)->paginate(10);

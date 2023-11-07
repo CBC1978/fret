@@ -118,7 +118,9 @@ class ShipperAnnouncementController extends Controller
 
    public function displayAnnouncementForm()
    {
-       return view('shipper.announcements.create');
+       $villes = DB::table('ville')
+           ->get();
+       return view('shipper.announcements.create',compact('villes'));
    }
 
 
@@ -215,24 +217,9 @@ class ShipperAnnouncementController extends Controller
     public function contractHome()
     {
         $user = User::find(intval(session('userId')));
+
         try {
             $contracts = DB::table('contract_transport')
-                ->selectRaw("
-                    contract_transport.id,
-                    freight_announcement.origin,
-                    freight_announcement.destination,
-                    freight_announcement.description,
-                    shipper.company_name
-                    ")
-                ->join('transport_offer', 'contract_transport.fk_transport_offer_id', '=', 'transport_offer.id')
-                ->join('freight_announcement', 'transport_offer.fk_freight_announcement_id', '=', 'freight_announcement.id')
-                ->join('shipper', 'freight_announcement.fk_shipper_id', '=', 'shipper.id')
-                ->where('transport_offer.status', 1)
-                ->where('transport_offer.fk_carrier_id', $user->fk_carrier_id)
-                ->orderBy('contract_transport.id','desc')
-                ->get();
-
-            $contractsFromShipper = DB::table('contract_transport')
                 ->selectRaw("
                     contract_transport.id,
                     transport_announcement.origin,
@@ -244,14 +231,106 @@ class ShipperAnnouncementController extends Controller
                 ->join('transport_announcement', 'freight_offer.fk_transport_announcement_id', '=', 'transport_announcement.id')
                 ->join('shipper', 'freight_offer.fk_shipper_id', '=', 'shipper.id')
                 ->where('freight_offer.status', 1)
-                ->where('transport_announcement.fk_carrier_id', $user->fk_carrier_id)
+                ->where('freight_offer.fk_shipper_id', $user->fk_shipper_id)
+                ->orderBy('contract_transport.id','desc')
+                ->get();
+
+            $contractsFromShipper = DB::table('contract_transport')
+                ->selectRaw("
+                    contract_transport.id,
+                    freight_announcement.origin,
+                    freight_announcement.destination,
+                    freight_announcement.description,
+                    shipper.company_name
+                    ")
+                ->join('transport_offer', 'contract_transport.fk_transport_offer_id', '=', 'transport_offer.id')
+                ->join('freight_announcement', 'transport_offer.fk_freight_announcement_id', '=', 'freight_announcement.id')
+                ->join('shipper', 'freight_announcement.fk_shipper_id', '=', 'shipper.id')
+                ->where('transport_offer.status', 1)
+                ->where('freight_announcement.fk_shipper_id', $user->fk_shipper_id)
                 ->orderBy('contract_transport.id','desc')
                 ->get();
         } catch (\PHPUnit\Exception $e){
             $contracts = [];
             $contractsFromShipper = [];
         }
-        return view('carrier.contract.home',compact(['contracts', 'contractsFromShipper']));
-
+        return view('shipper.contract.home', compact(['contracts','contractsFromShipper']));
    }
+
+    public function contract_view($id)
+    {
+        $contract = ContractTransport::find($id);
+        $contractDetails = DB::table('contract_details')
+            ->selectRaw("
+                contract_details.id as details_id,
+                driver.id as driver_id,
+                driver.licence  as licence,
+                driver.first_name as driver_first,
+                driver.last_name as driver_last,
+
+                car.id_car as car_id,
+                car.registration as car_registration
+
+            ")
+            ->join('driver', 'contract_details.driver_id' ,'=', 'driver.id')
+            ->join('car', 'contract_details.cars_id' ,'=', 'car.id_car')
+            ->where('contract_id', $id)
+            ->get();
+        if ( isset($contract->fk_transport_offer_id) && $contract->fk_transport_offer_id != 0){
+            $contractInfos = DB::table('transport_offer')
+                ->selectRaw("
+                freight_announcement.origin,
+                freight_announcement.destination,
+                freight_announcement.weight,
+                freight_announcement.description,
+
+                shipper.company_name as shipperName,
+                shipper.address as shipperAddress,
+                shipper.ifu as shipperIfu,
+                shipper.rccm as shipperRccm,
+                shipper.phone as shipperPhone,
+
+                carrier.company_name as carrierName,
+                carrier.address as carrierAddress,
+                carrier.ifu as carrierIfu,
+                carrier.rccm as carrierRccm,
+                carrier.phone as carrierPhone
+                ")
+                ->join('contract_transport', 'transport_offer.id' , '=', 'contract_transport.fk_transport_offer_id')
+                ->join('freight_announcement', 'transport_offer.fk_freight_announcement_id','=', 'freight_announcement.id')
+                ->join('carrier' , 'transport_offer.fk_carrier_id' , '=', 'carrier.id')
+                ->join('shipper', 'freight_announcement.fk_shipper_id', '=', 'shipper.id')
+                ->where('contract_transport.id', $id)
+                ->get();
+        }elseif(isset($contract->fk_freight_offert_id) && $contract->fk_freight_offert_id != 0){
+            $contractInfos = DB::table('freight_offer')
+                ->selectRaw("
+                transport_announcement.origin,
+                transport_announcement.destination,
+                transport_announcement.weight,
+                transport_announcement.description,
+
+                shipper.company_name as shipperName,
+                shipper.address as shipperAddress,
+                shipper.ifu as shipperIfu,
+                shipper.rccm as shipperRccm,
+                shipper.phone as shipperPhone,
+
+                carrier.company_name as carrierName,
+                carrier.address as carrierAddress,
+                carrier.ifu as carrierIfu,
+                carrier.rccm as carrierRccm,
+                carrier.phone as carrierPhone
+                ")
+                ->join('contract_transport', 'freight_offer.id' , '=', 'contract_transport.fk_freight_offert_id')
+                ->join('transport_announcement', 'freight_offer.fk_transport_announcement_id','=', 'transport_announcement.id')
+                ->join('carrier' , 'transport_announcement.fk_carrier_id' , '=', 'carrier.id')
+                ->join('shipper', 'freight_offer.fk_shipper_id', '=', 'shipper.id')
+                ->where('contract_transport.id', $id)
+                ->get();
+        }
+
+        return view('shipper.contract.contract_view', ['contract_id'=>$id, 'contract'=> $contractInfos, 'details'=>$contractDetails ]);
+
+    }
 }
