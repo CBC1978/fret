@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Shipper\Announcement;
 
 use App\Http\Controllers\Controller;
-use App\Mail\Email\AcceptedOffer;
-use App\Mail\Email\AnnouncementOffer;
-use App\Mail\Email\OfferReceive;
-use App\Mail\Email\OfferSend;
+use App\Mail\Email\AnnouncementOffers;
+use App\Mail\Email\OfferReceives;
+use App\Mail\Email\OfferSends;
 use App\Models\Carrier;
 use App\Models\ContractTransport;
 use App\Models\FreightOffer;
@@ -74,10 +73,10 @@ class ShipperAnnouncementController extends Controller
 
        //Send mail
        foreach ($shipperUsers as $shipper){
-           Mail::to($shipper->email)->send(new OfferSend($data));
+           Mail::to($shipper->email)->send(new OfferSends($data));
        }
        foreach ($carrierUsers as $carrier){
-           Mail::to($carrier->email)->send(new OfferReceive($data));
+           Mail::to($carrier->email)->send(new OfferReceives($data));
        }
        return redirect('home')->with('success', "Offre ajouté avec succès");
 
@@ -149,7 +148,7 @@ class ShipperAnnouncementController extends Controller
 //       Get all Carrier User
        $carriersUser = User::where([['fk_carrier_id', '!=', '0'],['status', '2']])->get();
        foreach ($carriersUser as $shipper){
-           Mail::to($shipper->email)->send(new AnnouncementOffer($data));
+           Mail::to($shipper->email)->send(new AnnouncementOffers($data));
        }
 
        return redirect()->route('shipper.announcements.create')->with('success', 'Annonce ajoutée avec succès.');
