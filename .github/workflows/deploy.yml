@@ -21,4 +21,4 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           passphrase: ""
-          script: "cd /var/www/html/bourse && ./.scripts/deploy.sh"
+          script: "cd /var/www/html/fret && ./.scripts/deploy.sh"
