@@ -90,7 +90,7 @@
                                             <td>{{ $contract->origin.' - '.$contract->destination }}</td>
                                             <td>
                                                 <a href="{{ route('c_contract_view',[$contract->id]) }}"><button class="btn btn-outline-primary" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-                                                <a href="{{ route('c_contract',[$contract->id]) }}"> <button class="btn btn-outline-success" type="button"><i class="fa fa-pencil-square-o"></i></button></a>
+{{--                                                <a href="{{ route('c_contract',[$contract->id]) }}"> <button class="btn btn-outline-success" type="button"><i class="fa fa-pencil-square-o"></i></button></a>--}}
 {{--                                                <a href=""><button class="btn btn-outline-danger" type="button"><i class="fa fa-trash-o"></i></button></a>--}}
 
                                             </td>

@@ -1,4 +1,4 @@
-@extends('layouts.carrier')
+@extends('layouts.shipper')
 
 @section('content')
 <style>

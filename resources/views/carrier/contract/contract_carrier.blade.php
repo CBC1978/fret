@@ -66,7 +66,6 @@
 
                 </div>
             </div>
-
                 <div class="card mt-20">
                     <div class="card-header">
                         Ajouter les camions concernés
@@ -542,7 +541,7 @@
                     });
 
 
-                $('#ModalDriver').modal('hide'); // Ferme la modal "Modalcar"
+                 $('#ModalDriver').modal('hide'); // Ferme la modal "Modalcar"
             });
 
             var dataDriver = []
