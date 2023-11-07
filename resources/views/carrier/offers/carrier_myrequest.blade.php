@@ -23,17 +23,6 @@
 </script>
 <button type="submit" onclick="returnToPreviousPage()">Retour</button>
 
-<div class="box-heading">
-    <div class="box-title">
-        <h3 class="mb-35">Mes demandes</h3>
-    </div>
-    <div class="box-breadcrumb">
-        <div class="breadcrumbs">
-            <ul>
-                <li><a class="icon-home" href="#">Dashboard</a></li>
-                <li><span>Mes demandes</span></li>
-            </ul>
-
 <div class="box-content">
     <div class="box-heading">
         <div class="box-title">
