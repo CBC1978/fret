@@ -35,7 +35,7 @@
                     <p>{{ $detail->car_registration}}</p>
                @endforeach
             @endif
-            <p>Article 5 : Le présent contrat conclu commence à courir dès la date de sa signature par les parties
+            <p>Article 4 : Le présent contrat conclu commence à courir dès la date de sa signature par les parties
                 Il est renouvelable par tacite reconduction à la charge pour la partie qui entend résilier d’aviser l’autre (03) mois avant le terme normal.
             </p>
             <p class="text-right">
