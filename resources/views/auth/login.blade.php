@@ -62,7 +62,6 @@
                                     @csrf
                                     <div class="form-group">
                                         <label class="form-label" for="input-1">Adresse email <span class="text-danger">*</span></label>
-                                        <label class="form-label" for="input-1">Adresse email <span class="text-danger">*</span></label>
                                         <input class="form-control @error('email') is-invalid @enderror" id="input-1" type="email" required autocomplete="email" autofocus name="email" placeholder="Adresse email">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
