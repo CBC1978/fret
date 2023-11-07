@@ -51,7 +51,6 @@
                             <div class="form-login-cover">
                               <div class="text-center">
                             <div class="image-box"><img src="src/imgs/brands/logo-cbc.png" alt="jobBox"></div>
-                            <div class="image-box"><img src="src/imgs/brands/logo-cbc.png" alt="jobBox"></div>
                                 <p class="font-sm text-muted mb-30">Connectez vous et faites de bonnes affaires.</p>
                                 <form class="login-register text-start mt-20" method="post" action="{{ route('loginUser') }}">
                                     @if(Session::has('success'))
@@ -62,6 +61,7 @@
                                     @endif
                                     @csrf
                                     <div class="form-group">
+                                        <label class="form-label" for="input-1">Adresse email <span class="text-danger">*</span></label>
                                         <label class="form-label" for="input-1">Adresse email <span class="text-danger">*</span></label>
                                         <input class="form-control @error('email') is-invalid @enderror" id="input-1" type="email" required autocomplete="email" autofocus name="email" placeholder="Adresse email">
                                         @error('email')
