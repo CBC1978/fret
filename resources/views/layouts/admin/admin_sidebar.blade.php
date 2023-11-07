@@ -9,17 +9,17 @@
     .menu-box {
          padding: 2px;
      }
-   
+
      .menu-box {
          padding: 0px;
      }
-   
+
      .menu-box a {
          text-decoration: none;
          color: #333;
          display: block;
      }
-   
+
      .menu-box a.active {
          font-weight: bold;
      }
@@ -33,10 +33,10 @@
 
   @media (min-width: 569px) {
     .nav-main-menu {
-      width: 216px; 
+      width: 216px;
     }
   }
-      
+
   </style>
 </head>
 <body>
@@ -45,7 +45,7 @@
     <span class="burger-icon-mid"></span>
     <span class="burger-icon-bottom"></span>
   </div>
-  
+
           <!-- Mobile menu (hidden by default) -->
   <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
     <div class="mobile-header-wrapper-inner">
@@ -69,7 +69,7 @@
                 <li>
                   <a class="dashboard2 {{ request()->routeIs('a_user_gestion') ? 'active' : '' }}" href="{{ route('a_user_gestion') }}">
                     <img src="{{ asset('src/imgs/page/dashboard/candidates.svg') }}" alt="jobBox">
-                    <span class="name">User Gestion </span>
+                    <span class="name">Utilisateur </span>
                   </a>
                 </li>
                 <li>
@@ -106,7 +106,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="nav"><a class="btn btn-expanded" id="expandButton"></a>
     <nav class="nav-main-menu" id="mainMenu">
       <ul class="main-menu">
@@ -122,7 +122,7 @@
           <div class="menu-box {{ request()->routeIs('a_user_gestion') ? 'active' : '' }}">
             <a class="" href="{{ route('a_user_gestion') }}">
               <img src="{{ asset('src/imgs/page/dashboard/candidates.svg') }}" alt="jobBox">
-              <span class="name">User Gestion </span>
+              <span class="name">Utilisateur </span>
             </a>
           </div>
         </li>
@@ -161,13 +161,13 @@
       </ul>
     </nav>
   </div>
-  
-  
-  
+
+
+
   <script>
     const expandButton = document.getElementById('expandButton');
     const mainMenu = document.getElementById('mainMenu');
-  
+
     expandButton.addEventListener('click', function() {
       if (mainMenu.style.width === '64px') {
         mainMenu.style.width = '275px'; // Reprendre la largeur d'origine
