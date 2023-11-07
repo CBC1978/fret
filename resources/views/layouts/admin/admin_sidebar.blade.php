@@ -122,7 +122,7 @@
           <div class="menu-box {{ request()->routeIs('a_user_gestion') ? 'active' : '' }}">
             <a class="" href="{{ route('a_user_gestion') }}">
               <img src="{{ asset('src/imgs/page/dashboard/candidates.svg') }}" alt="jobBox">
-              <span class="name">Utilisateur </span>
+              <span class="name">Utilisateur</span>
             </a>
           </div>
         </li>

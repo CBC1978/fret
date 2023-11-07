@@ -35,6 +35,7 @@
                     <li><span>Mes Offres de frets</span></li>
                 </ul>
             </div>
+
         </div>
     </div>
 </div>
@@ -62,11 +63,11 @@
                             <td>{{ $offer->description }}</td>
                             <td>
                                 @if($offer->status == 0)
-                                <button type="button" class="btn btn-primary "> En attente </button>
+                                <button type="button" class="btn btn-primary ">En attente</button>
                                 @elseif($offer->status == 1)
-                                <button type="button" class="btn btn-success ">  Accepter </button>
+                                <button type="button" class="btn btn-success ">Accepter</button>
                                 @else
-                                <button type="button" class="btn btn-danger ">Refusé </button>
+                                <button type="button" class="btn btn-danger ">Refusé</button>
                                 @endif
                             </td>
                             <td>

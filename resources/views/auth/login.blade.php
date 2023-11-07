@@ -51,9 +51,6 @@
                             <div class="form-login-cover">
                               <div class="text-center">
                             <div class="image-box"><img src="src/imgs/brands/logo-cbc.png" alt="jobBox"></div>
-                                <h2 class="font-sm text-brand-2">Bienvenue</h2>
-                                <h2 class="mt-10 mb-5 text-brand-1">CONNEXION</h2>
-                                <p class="font-sm text-brand-2">Se connecter</p>
                                 <p class="font-sm text-muted mb-30">Connectez vous et faites de bonnes affaires.</p>
                                 <form class="login-register text-start mt-20" method="post" action="{{ route('loginUser') }}">
                                     @if(Session::has('success'))
