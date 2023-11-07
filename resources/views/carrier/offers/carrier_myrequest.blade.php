@@ -23,16 +23,6 @@
 </script>
 <button type="submit" onclick="returnToPreviousPage()">Retour</button>
 
-<div class="box-heading">
-    <div class="box-title">
-        <h3 class="mb-35">Mes demandes</h3>
-    </div>
-    <div class="box-breadcrumb">
-        <div class="breadcrumbs">
-            <ul>
-                <li><a class="icon-home" href="#">Dashboard</a></li>
-                <li><span>Mes demandes</span></li>
-            </ul>
 <div class="box-content">
     <div class="box-heading">
         <div class="box-title">
@@ -84,16 +74,16 @@
                                 <a
                                 href="{{ route('c_contract', ['id'=>$offer->id]) }}"
                                 class="btn btn-primary">Contrat</a>
-    
+
                                 @endif
                             </td>
                             <td>
                                 {{-- Vérifiez la valeur de status_message pour décider d'afficher la notification --}}
-                                @if($offer->status_message == 0)
+                                @if($offer->status == 0)
                                     Aucune notification
-                                @elseif($offer->status_message == 2)
+                                @elseif($offer->status == 2)
                                     Vous avez un message
-                                @elseif($offer->status_message == 3)
+                                @elseif($offer->status == 3)
                                     Message lu
                                 @endif
                             </td>
@@ -105,7 +95,7 @@
                             </td>
                         </tr>
                     @endforeach
-    
+
                 </tbody>
             </table>
         </div>
