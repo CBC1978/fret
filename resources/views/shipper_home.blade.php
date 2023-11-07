@@ -80,7 +80,6 @@
                 <div class="row">
                   <div class="box-title">
                     <div class="row">
-
                       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-25">
                         <h3>Offres récentes de transports </h3>
                       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-10">
@@ -91,7 +90,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row" id="annoncesContainer">
                     @if(count($transports) == 0)
                         <p>Auncune offre disponible</p>

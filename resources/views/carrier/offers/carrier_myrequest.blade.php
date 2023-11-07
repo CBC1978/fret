@@ -33,18 +33,6 @@
                 <li><a class="icon-home" href="#">Dashboard</a></li>
                 <li><span>Mes demandes</span></li>
             </ul>
-<div class="box-content">
-    <div class="box-heading">
-        <div class="box-title">
-            <h3 class="mb-35">Mes Offres de frets</h3>
-        </div>
-        <div class="box-breadcrumb">
-            <div class="breadcrumbs">
-                <ul>
-                    <li><a class="icon-home" href="#">Dashboard</a></li>
-                    <li><span>Mes Offres de frets</span></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
