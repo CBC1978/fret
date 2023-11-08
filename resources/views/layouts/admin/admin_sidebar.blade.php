@@ -148,21 +148,21 @@
         </li>
 
         <li>
-        <div class="menu-box {{ request()->routeIs('annonces.a_annonce') ? 'active' : '' }}">
+        <div class="menu-offer {{ request()->routeIs('annonces.a_annonce') ? 'active' : '' }}">
             <a>
                 <img src="{{ asset('src/imgs/page/dashboard/candidates.svg') }}" alt="jobBox">
-                <span class="name">Annonces</span>
+                <span class="name">Offres</span>
             </a>
           </div>
           <ul class="sub-menu">
             <li>
               <a href="{{ route('annonces.a_annonce') }}">
-                    Chargeur
+                    Chargeur(s)
                 </a>
             </li>
             <li>
               <a href="{{ route('annonces.a_annonceTransporter') }}">
-                    Transporteur
+                    Transporteur(s)
                 </a>
             </li>
           </ul>
