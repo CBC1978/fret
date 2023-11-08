@@ -51,7 +51,7 @@
                             <div class="form-login-cover">
                               <div class="text-center">
                             <div class="image-box"><img src="src/imgs/brands/logo-cbc.png" alt="jobBox"></div>
-                                <p class="font-sm text-muted mb-30">Connectez vous et faites de bonnes affaires.</p>
+                                <p class="font-sm text-muted mb-30">Connectez vous et faites des affaires.</p>
                                 <form class="login-register text-start mt-20" method="post" action="{{ route('loginUser') }}">
                                     @if(Session::has('success'))
                                         <div class="alert alert-success"> {{ Session::get('success') }}</div>
