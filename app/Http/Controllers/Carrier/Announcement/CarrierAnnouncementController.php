@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Carrier\Announcement;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Car\formCar;
 use App\Mail\Email\AnnouncementOffers;
 use App\Mail\Email\OfferReceives;
 use App\Mail\Email\OfferSends;
+use App\Models\BrandCar;
 use App\Models\Carrier;
 use App\Models\ContractDetails;
 use App\Models\ContractTransport;
@@ -14,6 +16,7 @@ use App\Models\FreightAnnouncement;
 use App\Models\FreightOffer;
 use App\Models\Shipper;
 use App\Models\TransportOffer;
+use App\Models\TypeCar;
 use App\Models\User;
 
 use Barryvdh\DomPDF\PDF;
@@ -247,11 +250,15 @@ class CarrierAnnouncementController extends Controller
                 driver.last_name as driver_last,
 
                 car.id_car as car_id,
-                car.registration as car_registration
+                car.registration as car_registration,
 
+                type_car.libelle as type,
+                brand_car.libelle as brand
             ")
             ->join('driver', 'contract_details.driver_id' ,'=', 'driver.id')
             ->join('car', 'contract_details.cars_id' ,'=', 'car.id_car')
+            ->join('type_car', 'car.fk_type_car' ,'=', 'type_car.id')
+            ->join('brand_car', 'car.fk_brand_car' ,'=', 'brand_car.id')
             ->where('contract_id', $id)
             ->get();
         if ( isset($contract->fk_transport_offer_id) && $contract->fk_transport_offer_id != 0){
@@ -323,11 +330,15 @@ class CarrierAnnouncementController extends Controller
                 driver.last_name as driver_last,
 
                 car.id_car as car_id,
-                car.registration as car_registration
+                car.registration as car_registration,
 
+                type_car.libelle as type,
+                brand_car.libelle as brand
             ")
             ->join('driver', 'contract_details.driver_id' ,'=', 'driver.id')
             ->join('car', 'contract_details.cars_id' ,'=', 'car.id_car')
+            ->join('type_car', 'car.fk_type_car' ,'=', 'type_car.id')
+            ->join('brand_car', 'car.fk_brand_car' ,'=', 'brand_car.id')
             ->where('contract_id', $id)
             ->get();
         if ( isset($contract->fk_transport_offer_id) && $contract->fk_transport_offer_id != 0){
@@ -385,30 +396,59 @@ class CarrierAnnouncementController extends Controller
         }
 
         $carrierId = session('fk_carrier_id');
-        $cars= Car::where('fk_carrier_id', $carrierId)->get();
+        $cars= DB::table('car')
+            ->selectRaw('
+            car.id_car,
+            car.registration,
+            type_car.libelle as type,
+            brand_car.libelle as brand
+            ')
+            ->join('type_car', 'car.fk_type_car' ,'=', 'type_car.id')
+            ->join('brand_car', 'car.fk_brand_car' ,'=', 'brand_car.id')
+            ->where('fk_carrier_id', $carrierId)
+            ->get();
         $drivers= Driver::where('fk_carrier_id', $carrierId)->get();
+        $brands = BrandCar::all();
+        $types = TypeCar::all();
         return view('carrier.contract.contract_carrier',
-            ['cars' => $cars, 'drivers'=>$drivers , 'contract_id'=>$id, 'contract'=> $contractInfos, 'details'=>$contractDetails ]);
+            ['cars' => $cars, 'drivers'=>$drivers , 'contract_id'=>$id,
+                'contract'=> $contractInfos, 'details'=>$contractDetails,
+                'brands'=>$brands, 'types'=>$types]);
     }
 
 
-    public function addCar(Request $request)
+    public function addCar(formCar $request)
     {
-       $request->validate([
-            'registration' => 'required|string|max:255',
-        ]);
-
         $carrierId = session('fk_carrier_id');
         $car = new Car();
         $car->registration = $request->input('registration');
-        $car->type = '';
-        $car->brand = '';
-        $car->type = '';
-        $car->model = '';
-        $car->payload = '';
+        $car->fk_type_car = $request->input('type');
+        $car->fk_brand_car = $request->input('brand');
+        $car->model = $request->input('model');
+        $car->payload = $request->input('payload');
+
         $car->fk_carrier_id = $carrierId;
         $car->save();
-        return json_encode($car);
+
+        $type = DB::table('type_car')
+            ->selectRaw('libelle')
+            ->where('id','=','3')
+            ->get();
+
+        $brand = DB::table('brand_car')
+            ->selectRaw('libelle')
+            ->where('id','=','3')
+            ->get();
+
+        $data = array(
+          'id'=>$car->id,
+          'registration'=>$car->registration,
+          'type'=>$type[0]->libelle,
+          'brand'=>$brand[0]->libelle,
+        );
+
+        return $data;
+
 
     }
 
@@ -437,31 +477,36 @@ class CarrierAnnouncementController extends Controller
 
     public function contractDetails(Request $request)
     {
-        $cars = $request->input('id_car_contract');
+        $cars = ($request->input('id_car_contract'))? $request->input('id_car_contract'): [];
+
         if (count($cars) <= 0)
         {
             return 2;
         }
-        elseif(count($cars) == count($cars))
+        elseif(count($cars) == count($cars) )
         {
-            $db_details = ContractDetails::where('contract_id',intval($request->input('contract')))->get();
+            $drivers = ($request->input('id_driver_contract'))? $request->input('id_driver_contract'): [];
+            if(count($drivers) != 0){
+                $db_details = ContractDetails::where('contract_id',intval($request->input('contract')))->get();
                 foreach ($db_details as $db){
                     $db->delete();
                 }
 
-            for($i = 0; $i < count($cars); $i++ ){
+                for($i = 0; $i < count($cars); $i++ ){
 
-                $contractDetails = new ContractDetails();
-                $contractDetails->contract_id = intval($request->input('contract'));
-                $contractDetails->driver_id = $request->input('id_driver_contract')[$i];
-                $contractDetails->cars_id = $request->input('id_car_contract')[$i];
-                $contractDetails->created_by = intval(session()->get('userId'));
+                    $contractDetails = new ContractDetails();
+                    $contractDetails->contract_id = intval($request->input('contract'));
+                    $contractDetails->driver_id = $request->input('id_driver_contract')[$i];
+                    $contractDetails->cars_id = $request->input('id_car_contract')[$i];
+                    $contractDetails->created_by = intval(session()->get('userId'));
 
-                $contractDetails->save();
+                    $contractDetails->save();
+                }
+
+                return 0;
+            }else{
+                return 1;
             }
-
-            return 0;
-
         }elseif(count($cars) != count($cars))
         {
             return 1;

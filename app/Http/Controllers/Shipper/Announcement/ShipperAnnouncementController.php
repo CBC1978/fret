@@ -268,11 +268,15 @@ class ShipperAnnouncementController extends Controller
                 driver.last_name as driver_last,
 
                 car.id_car as car_id,
-                car.registration as car_registration
+                car.registration as car_registration,
 
+                type_car.libelle as type,
+                brand_car.libelle as brand
             ")
             ->join('driver', 'contract_details.driver_id' ,'=', 'driver.id')
             ->join('car', 'contract_details.cars_id' ,'=', 'car.id_car')
+            ->join('type_car', 'car.fk_type_car' ,'=', 'type_car.id')
+            ->join('brand_car', 'car.fk_brand_car' ,'=', 'brand_car.id')
             ->where('contract_id', $id)
             ->get();
         if ( isset($contract->fk_transport_offer_id) && $contract->fk_transport_offer_id != 0){

@@ -56,7 +56,6 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
                         D'autre part, {{ $contract[0]->carrierName }} sis à {{ $contract[0]->carrierAddress }}, immatriculé sous le RCCM
                         {{$contract[0]->carrierRccm}}
-
                     </div>
 
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-20">
@@ -82,14 +81,16 @@
                                 @foreach($details as $detail)
                                     <div class="col-md-12" >
                                         <div class="form-group input-group mb-3">
-                                            <span class="input-group-text" id="remove_field">
+                                            <span class="input-group-text mr-5" id="remove_field">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                   <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                                 </svg>
                                             </span>
                                             <input class="form-control" type="hidden" value="{{ $detail->details_id }}" name="details_id[]" >
                                             <input class="form-control" type="hidden" value="{{ $detail->car_id }}" id="id_car_contract[]" name="id_car_contract[]" >
-                                            <input class="form-control" type="text" value="{{ $detail->car_registration}}" id="car_registration" name="car_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->car_registration}}" id="car_registration" name="car_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->type}}"  readonly>
+                                            <input class="form-control" type="text" value="{{ $detail->brand}}" readonly>
                                         </div>
                                     </div>
                                 @endforeach
@@ -113,13 +114,15 @@
                                 @foreach($details as $detail)
                                     <div class="col-md-12" >
                                         <div class="form-group input-group mb-3">
-                                            <span class="input-group-text" id="remove_field_driver">
+                                            <span class="input-group-text mr-5" id="remove_field_driver">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                   <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                                 </svg>
                                             </span>
                                             <input class="form-control" type="hidden" value="{{ $detail->driver_id }}" id="id_driver_contract" name="id_driver_contract[]" >
-                                            <input class="form-control" type="text" value="{{ $detail->licence.' - '.$detail->driver_first.' - '.$detail->driver_last }}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->licence }}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->driver_first }}"   readonly>
+                                            <input class="form-control" type="text" value="{{ $detail->driver_last }}"  readonly>
                                         </div>
                                     </div>
                                 @endforeach
@@ -144,7 +147,9 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>IMMATRICULATION</th>
+                                    <th>Immatriculation</th>
+                                    <th>Type</th>
+                                    <th>Marque</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -156,6 +161,12 @@
                                     </td>
                                     <td>
                                         <p id="car_register">  {{ $car->registration }}</p>
+                                    </td>
+                                    <td>
+                                        <p id="car_type">  {{ $car->type }}</p>
+                                    </td>
+                                    <td>
+                                        <p id="car_brand">  {{ $car->brand }}</p>
                                     </td>
                                         <td>
                                             <span>
@@ -196,8 +207,42 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="font-sm color-text-muted mb-10">Ajouter un camion<span class="required">*</span></label>
+                                        <label class="font-sm color-text-muted mb-10">Immatriculation<span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="registration" placeholder="BF11GH0000" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="font-sm color-text-muted mb-10">Type<span class="text-danger">*</span></label>
+                                        <select name="type" id="type" class="form-control" required>
+                                            <option value="" disabled >--------------------------------------</option>
+                                            @foreach($types as $type)
+                                                <option value="{{ $type->id }}" >{{$type->libelle}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="font-sm color-text-muted mb-10">Marque<span class="text-danger">*</span></label>
+                                        <select name="brand" id="brand" class="form-control" required>
+                                            <option value="" disabled >--------------------------------------</option>
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}" >{{$brand->libelle}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="font-sm color-text-muted mb-10">Modèle</label>
+                                        <input class="form-control" type="text" name="model" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="font-sm color-text-muted mb-10">Charge utile (t)</label>
+                                        <input class="form-control" type="number" name="payload" placeholder="">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Ajouter</button>
@@ -237,10 +282,10 @@
                                             <p id="driver_licence">  {{ $driver->licence }}</p>
                                         </td>
                                         <td>
-                                            <p id="driver_first">  {{ $driver->firstName }}</p>
+                                            <p id="driver_first">  {{ $driver->first_name }}</p>
                                         </td>
                                         <td>
-                                            <p id="driver_last">  {{ $driver->lastName }}</p>
+                                            <p id="driver_last">  {{ $driver->last_name }}</p>
                                         </td>
                                         <td>
                                             <span>
@@ -280,16 +325,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="font-sm color-text-mutted mb-10">Nom<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="first" name="first" required>
+                                        <input class="form-control" type="text" id="first" name="first" placeholder="Entrez votre nom" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="font-sm color-text-mutted mb-10">Prénoms<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="last" name="last" required>
+                                        <input class="form-control" type="text" id="last" name="last" placeholder="Entrez votre prénom"  required>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="font-sm color-text-mutted mb-10">Numéro de permis<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="licence" name="licence" required>
+                                        <input class="form-control" type="text" id="licence" name="licence" placeholder="Entrez le numéro du permis"  required>
                                     </div>
                                     <div class="form-group">
                                         <label class="font-sm color-text-mutted mb-10">Date d'établissement</label>
@@ -369,7 +413,7 @@
                     "infoFiltered":   "(filtrage de _MAX_ total éléments)",
                     "infoPostFix":    "",
                     "thousands":      ",",
-                    "lengthMenu":     "Afficher _MENU_ éléments",
+                    "lengthMenu":     "_MENU_",
                     "loadingRecords": "Chargement...",
                     "processing":     "",
                     "search":         "",
@@ -427,6 +471,7 @@
                 e.preventDefault();
                 // Récupérer les données du formulaire
                 var formData = new FormData(this);
+                console.log(formData)
                 // Envoyer les données au serveur en utilisant AJAX
                 fetch(this.action, {
                     method: 'POST',
@@ -437,24 +482,26 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     var newRow = `
                     <div class="col-md-12">
                         <div class="form-group input-group mb-3">
-                            <span class="input-group-text" id="remove_field">
+                            <span class="input-group-text mr-5" id="remove_field">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                 </svg>
                             </span>
                             <input class="form-control" type="hidden" value="${data.id_car}" id="id_car_contract" name="id_car_contract[]">
-                            <input class="form-control" type="text" value="${data.registration}" id="car_registration" name="car_registration[]" required readonly>
+                            <input class="form-control mr-5" type="text" value="${data.registration}" id="car_registration" name="car_registration[]" required readonly>
+                            <input class="form-control mr-5" type="text" value="${data.type}"   readonly>
+                            <input class="form-control" type="text" value="${data.brand}" readonly>
                         </div>
                     </div>
                     `;
                     $("#wrapper").append(newRow); // Ajoute la nouvelle ligne à l'élément avec l'ID "wrapper"
                 });
-                //     .catch(error => {
-                //         console.error('Error:', error);
-                //     });
+                this.reset();
+
                 $('#ModalCar').modal('hide'); // Ferme la modal "Modalcar"
             });
             var data = []
@@ -463,13 +510,17 @@
             $(btn_save_car).click(function (){
                 data = [];
                 var checkedBoxes = document.querySelectorAll('input[name=id_car]');
-                var id_registration = document.querySelectorAll('#car_register');
+                var registration = document.querySelectorAll('#car_register');
+                var type = document.querySelectorAll('#car_type');
+                var brand = document.querySelectorAll('#car_brand');
 
                 for(i =0; i < checkedBoxes.length; i++){
                     if(checkedBoxes[i].checked){
                         data.push({
                             id:checkedBoxes[i].value,
-                            registration:id_registration[i].innerText,
+                            registration:registration[i].innerText,
+                            type:type[i].innerText,
+                            brand:brand[i].innerText,
                         })
                     }
                 }
@@ -478,13 +529,15 @@
                         `
                      <div class="col-md-12" >
                         <div class="form-group input-group mb-3">
-                            <span class="input-group-text" id="remove_field">
+                            <span class="input-group-text mr-5" id="remove_field">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                   <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                 </svg>
                             </span>
                             <input class="form-control" type="hidden" value="${item.id}" id="id_car_contract" name="id_car_contract[]" >
-                            <input class="form-control" type="text" value="${item.registration}" id="car_registration" name="car_registration[]" required readonly>
+                            <input class="form-control mr-5" type="text" value="${item.registration}" id="car_registration" name="car_registration[]" required readonly>
+                            <input class="form-control mr-5" type="text" value="${item.type}" id="car_registration" name="car_registration[]" required readonly>
+                            <input class="form-control" type="text" value="${item.brand}" id="car_registration" name="car_registration[]" required readonly>
                         </div>
                     </div>
                     `
@@ -523,17 +576,18 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    var name = data.licence +' '+ data.first_name +' '+ data.last_name;
                     var newRow = `
                     <div class="col-md-12">
                         <div class="form-group input-group mb-3">
-                            <span class="input-group-text" id="remove_field_driver">
+                            <span class="input-group-text mr-5" id="remove_field_driver">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                 </svg>
                             </span>
                             <input class="form-control" type="hidden" value="${data.id}" id="id_driver_contract" name="id_driver_contract[]">
-                            <input class="form-control" type="text" value="${name}" id="driver_registration" name="driver_registration[]" readonly>
+                            <input class="form-control mr-5" type="text" value="${data.licence}" id="driver_registration" name="driver_registration[]" readonly>
+                            <input class="form-control mr-5" type="text" value="${data.first_name}" id="driver_registration" name="driver_registration[]" readonly>
+                            <input class="form-control" type="text" value="${data.last_name}" id="driver_registration" name="driver_registration[]" readonly>
                         </div>
                     </div>
                     `;
@@ -557,11 +611,12 @@
 
                 for (i = 0; i < checkedBoxes.length; i++) {
                     if (checkedBoxes[i].checked) {
-                       var name = licence[i];
-                           +' '+first[i]+' '+last[i];
-                        dataDriver.push({
+                       dataDriver.push({
                             id: checkedBoxes[i].value,
-                            registration: name.innerText,
+                            licence: licence[i].innerText,
+                            first: first[i].innerText,
+                            last: last[i].innerText,
+
                         })
                     }
                 }
@@ -570,13 +625,15 @@
                         `
                              <div class="col-md-12" >
                                 <div class="form-group input-group mb-3">
-                                    <span class="input-group-text" id="remove_field_driver">
+                                    <span class="input-group-text mr-5" id="remove_field_driver">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                         </svg>
                                     </span>
                                     <input class="form-control" type="hidden" value="${item.id}" id="id_driver_contract" name="id_driver_contract[]" >
-                                    <input class="form-control" type="text" value="${item.registration}" id="driver_registration" name="driver_registration[]"  readonly>
+                                    <input class="form-control mr-5" type="text" value="${item.licence}" id="driver_registration" name="driver_registration[]"  readonly>
+                                    <input class="form-control mr-5" type="text" value="${item.first}" id="driver_registration" name="driver_registration[]"  readonly>
+                                    <input class="form-control" type="text" value="${item.last}" id="driver_registration" name="driver_registration[]"  readonly>
                                 </div>
                             </div>
                             `

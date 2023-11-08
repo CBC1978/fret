@@ -75,8 +75,9 @@
                                 @foreach($details as $detail)
                                     <div class="col-md-12" >
                                         <div class="form-group input-group mb-3">
-
-                                            <input class="form-control" type="text" value="{{ $detail->car_registration}}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->car_registration}}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->type}}"  readonly>
+                                            <input class="form-control" type="text" value="{{ $detail->brand}}" readonly>
                                         </div>
                                     </div>
                                 @endforeach
@@ -102,7 +103,9 @@
                                 @foreach($details as $detail)
                                     <div class="col-md-12" >
                                         <div class="form-group input-group mb-3">
-                                            <input class="form-control" type="text" value="{{ $detail->licence.' - '.$detail->driver_first.' - '.$detail->driver_last }}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->licence }}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->driver_first }}" readonly>
+                                            <input class="form-control" type="text" value="{{ $detail->driver_last }}" readonly>
                                         </div>
                                     </div>
                                 @endforeach

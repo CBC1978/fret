@@ -54,7 +54,6 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
                             D'autre part, {{ $contract[0]->carrierName }} sis à {{ $contract[0]->carrierAddress }}, immatriculé sous le RCCM
                             {{$contract[0]->carrierRccm}}
-
                         </div>
 
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-20">
@@ -75,8 +74,9 @@
                                 @foreach($details as $detail)
                                     <div class="col-md-12" >
                                         <div class="form-group input-group mb-3">
-
-                                            <input class="form-control" type="text" value="{{ $detail->car_registration}}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->car_registration}}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->type}}" readonly>
+                                            <input class="form-control" type="text" value="{{ $detail->brand}}" readonly>
                                         </div>
                                     </div>
                                 @endforeach
@@ -102,7 +102,9 @@
                                 @foreach($details as $detail)
                                     <div class="col-md-12" >
                                         <div class="form-group input-group mb-3">
-                                            <input class="form-control" type="text" value="{{ $detail->licence.' - '.$detail->driver_first.' - '.$detail->driver_last }}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->licence }}" id="driver_registration" name="driver_registration[]"  readonly>
+                                            <input class="form-control mr-5" type="text" value="{{ $detail->driver_first }}" readonly>
+                                            <input class="form-control" type="text" value="{{ $detail->driver_last }}" readonly>
                                         </div>
                                     </div>
                                 @endforeach
