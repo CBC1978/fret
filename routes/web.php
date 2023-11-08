@@ -140,6 +140,7 @@
 //Les routes annonces ADMIN
     Route::prefix('annonces')->group(function () {
         Route::get('/', [AdminController::class, 'displayAnnouncement'])->name('annonces.a_annonce');
+        Route::get('/transport-offer', [AdminController::class, 'displayAnnounceTransport'])->name('annonces.a_annonceTransporter');
         Route::put('/filtrer', [AdminController::class, 'announcementFilterbyStatus'])->name('annonces.filter');
         Route::get('/update-freight/{annonce}', [AdminController::class,'updateFreightAnnouncementStatus'])->name('annonces.updateFreight');
         Route::get('/update-transport/{annonce}', [AdminController::class,'updateTransportAnnouncementStatus'])->name('annonces.updateTransport');

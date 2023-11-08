@@ -79,7 +79,7 @@
                                 </td>
                                 <td>
                                     {{-- Vérifiez si status_message est égal à 2 avant d'afficher le bouton Echanger --}}
-                                    @if($offer->status == 1 || $offer->status == 3)
+                                    @if($offer->status == 1 || $offer->status == 0 )
                                         <a href="{{ route('carrier-reply-chat', ['offer_id' => $offer->id]) }}" class="btn btn-tag btn-info">Echanger</a>
                                     @endif
                                 </td>

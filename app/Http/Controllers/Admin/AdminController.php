@@ -17,10 +17,19 @@ class AdminController extends Controller
     // Méthode pour afficher toutes les annonces de fret
     public function displayAnnouncement()
     {
-        $chargeurAnnonces = FreightAnnouncement::with(['shipper'])->get();
-        $transporteurAnnonces = TransportAnnouncement::with(['carrier'])->get();
 
-        return view('admin.annonces.a_annonce', compact('chargeurAnnonces','transporteurAnnonces'));
+        $chargeurAnnonces = FreightAnnouncement::with(['shipper','transportOffer'])->get();
+    
+        return view('admin.annonces.a_annonce', compact('chargeurAnnonces'));
+    }
+
+    public function displayAnnounceTransport()
+    {
+        $transporteurAnnonces = TransportAnnouncement::with(['carrier','freightOffers'])->get();
+        
+        return view('admin.annonces.a_annonceTransporter', compact('transporteurAnnonces'));
+
+       
     }
 
     // Méthode pour filtrer les annonces par status
