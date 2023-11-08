@@ -108,6 +108,7 @@
     Route::prefix('carrier/announcements')->name('carrier.announcements.')->group(function () {
         Route::get('/', [CarrierAnnouncementController::class, 'displayTransportAnnouncement'])->name('index');
         Route::get('user', [CarrierAnnouncementController::class, 'userConnectedAnnouncement'])->name('user');
+        Route::get('/useroffer', [CarrierAnnouncementController::class, 'userConnectedAnnounce'])->name('useroffer');
         Route::get('create', [CarrierAnnouncementController::class, 'displayAnnouncementForm'])->name('create');
         Route::post('store', [CarrierAnnouncementController::class, 'handleSubmittedAnnouncement'])->name('store');
         Route::post('offer.manage/{id}', [CarrierAnnouncementController::class, 'manageOffer'])->name('offer.manage')->where('id', '[0-9]+');
@@ -122,6 +123,7 @@
     Route::prefix('shipper/announcements')->name('shipper.announcements.')->group(function () {
         Route::get('/', [ShipperAnnouncementController::class, 'displayFreightAnnouncement'])->name('index');
         Route::get('user', [ShipperAnnouncementController::class, 'userConnectedAnnouncement'])->name('user');
+        Route::get('/useroffer', [ShipperAnnouncementController::class, 'userConnectedAnnounce'])->name('useroffer');
         Route::get('myrequest', [ShipperAnnouncementController::class, 'myrequest'])->name('shipper_myrequest');
         Route::get('create', [ShipperAnnouncementController::class, 'displayAnnouncementForm'])->name('create');
         Route::get('{id}', [ShipperAnnouncementController::class, 'show'])->name('show');

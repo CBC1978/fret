@@ -42,24 +42,44 @@ class CarrierAnnouncementController extends Controller
     }
 
     public function userConnectedAnnouncement()
+{
+    $user = User::find(session()->get('userId'));
+    $announces = TransportAnnouncement::where('fk_carrier_id', intval($user->fk_carrier_id))
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+    // Traiter les annonces et compter les offres
+    // Filtrer pour garder uniquement les annonces avec des offres
+    $announcesWithOffers = $announces->each(function ($announce) {
+        $announce->offreCount = $announce->freightOffers->count();
+    })->filter(function ($announce) {
+        return $announce->offreCount > 0;
+    });
+
+    return view('carrier.announcements.user', compact('announcesWithOffers'));
+}
+
+
+public function userConnectedAnnounce()
     {
 
 
-    //Obtenir les infos
-    $user = User::find(session()->get('userId'));
-    $announces = TransportAnnouncement::where('fk_carrier_id', intval($user->fk_carrier_id))
-    ->orderBy('created_at', 'DESC')
-    ->get();
+        $user = User::find(session()->get('userId'));
+        $announces = TransportAnnouncement::where('fk_carrier_id',intval($user->fk_carrier_id))
+            ->orderBy('created_at', 'DESC')
+            ->get();
+             // Traiter les annonces et compter les offres, en gardant seulement celles sans offres
+         $announcesWithoutOffers = $announces->each(function ($announce) {
+             $announce->offreCount = $announce->freightOffers->count();
+         })->filter(function ($announce) {
+             return $announce->offreCount === 0;
+         });
 
-       // Traiter les annonces et compter les offres
-       foreach ($announces as $announce) {
-        $announce->offre = $announce->freightOffers->count();
-    }
 
-
-    return view('carrier.announcements.user', compact('announces'));
+    return view('carrier.announcements.useroffer', compact('announcesWithoutOffers'));
 
 }
+
     //  Méthode pour  gérer l'acceptation ou le refus d'une offre
 //    public function offerManagementHandleOffer(Request $request, $offerId)
 //    {
