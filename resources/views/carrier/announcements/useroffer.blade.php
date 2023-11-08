@@ -56,32 +56,29 @@
                                 </div>
                                 <div id="search-results"> </div>
                                 <div class="row" id="annoncesContainer">
-                                @foreach($announcesWithOffers as $announce)
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                        <div class="card-grid-2 hover-up" id="card_annonce">
-                                            <div class="card-grid-2-image-left"><span class="flash"></span>
-                                                <div class="image-box">
-                                                    @if($announce->offreCount > 0)
-                                                        <a href="{{ route("shipper.announcements.myoffer", ['id'=>$announce->id]) }}" ><button type="button" class="btn btn-success ">{{$announce->offreCount}} Offres</button></a>
+                                @foreach($announcesWithoutOffers as $announce)
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
+                                    <div class="card-grid-2 hover-up" id="card_annonce">
+                                    <div class="image-box">
+                                                    @if($announce->offreCount == 0)
+                                                        <a href="{{ route("shipper.announcements.myoffer", ['id'=>$announce->id]) }}" ><button type="button" class="btn btn-danger ">{{$announce->offreCount}} Offres</button></a>
                                                     @endif
                                                 </div>
-                                                <!-- Right info div removed as there was no content inside -->
-                                            </div>
-                                            <div class="card-block-info">
-                                                <h6><a href="">{{ ucfirst($announce->origin) }}-{{ ucfirst($announce->destination) }}</a></h6>
-                                                <div class="mt-5"><span class="card-briefcase">Date d'expiration:</span><span class="card-time">{{ date("d/m/Y", strtotime($announce->limit_date)) }}</span></div>
-                                                <p class="font-sm color-text-paragraph mt-15">{{$announce->description}}</p>
-                                                <div class="mt-30"><a class="btn btn-grey-small mr-5" href="">{{$announce->weight}} T</a></div>
-                                                <div class="card-2-bottom mt-30">
-                                                    <div class="row">
-                                                        <div class="col-lg-7 col-7"><span class="card-text-price">{{ $announce->price }}.FCFA</span></div>
-                                                        <!-- Postuler button code removed as it was commented out -->
-                                                    </div>
+                                        <!-- Contenu de la carte -->
+                                        <div class="card-block-info">
+                                            <h6><a href="">{{ ucfirst($announce->origin) }}-{{ ucfirst($announce->destination) }}</a></h6>
+                                            <div class="mt-5"><span class="card-briefcase">Date d'expiration:</span><span class="card-time">{{ date("d/m/Y", strtotime($announce->limit_date)) }}</span></div>
+                                            <p class="font-sm color-text-paragraph mt-15">{{$announce->description}}</p>
+                                            <div class="mt-30"><a class="btn btn-grey-small mr-5" href="">{{$announce->weight}} T</a></div>
+                                            <div class="card-2-bottom mt-30">
+                                                <div class="row">
+                                                    <div class="col-lg-7 col-7"><span class="card-text-price">{{ $announce->price }}.FCFA</span></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                </div>
+                            @endforeach
                                 </div>
                             </div>
                         </div>

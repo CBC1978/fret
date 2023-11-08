@@ -37,8 +37,8 @@ class ShipperAnnouncementController extends Controller
        return view('shipper.announcements.index', ['announcements' => $announcements]);
    }
 
-   public function positOffer (Request $request)
-   {
+    public function positOffer (Request $request)
+    {
 
        $request->validate([
 
@@ -83,28 +83,47 @@ class ShipperAnnouncementController extends Controller
    }
 
        // Afficher les annonces de l'utilisateur
-       public function userConnectedAnnouncement()
-       {
-           $user = User::find(session()->get('userId'));
-           $announces = FreightAnnouncement::where('fk_shipper_id',intval($user->fk_shipper_id))
-               ->orderBy('created_at', 'DESC')
-               ->get();
-          // Traiter les annonces et compter les offres
-       foreach ($announces as $announce) {
-        $announce->offre = $announce->transportOffer->count();
+    public function userConnectedAnnouncement()
+    {
+        $user = User::find(session()->get('userId'));
+        $announces = FreightAnnouncement::where('fk_shipper_id', intval($user->fk_shipper_id))
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        // Traiter les annonces et compter les offres
+        // Filtrer pour garder uniquement les annonces avec des offres
+        $announcesWithOffers = $announces->each(function ($announce) {
+            $announce->offreCount = $announce->transportOffer->count();
+        })->filter(function ($announce) {
+            return $announce->offreCount > 0;
+        });
+
+        return view('shipper.announcements.user', compact('announcesWithOffers'));
     }
 
-           return view('shipper.announcements.user', compact('announces'));
-       }
 
-       // Méthode pour gérer l'acceptation ou le refus d'une offre
-       public function handleOffer(Request $request, $offerId)
-       {
-           $offer = Offer::findOrFail($offerId);
+    public function userConnectedAnnounce()
+    {
+       $user = User::find(session()->get('userId'));
+       $announces = FreightAnnouncement::where('fk_shipper_id',intval($user->fk_shipper_id))
+           ->orderBy('created_at', 'DESC')
+           ->get();
+            // Traiter les annonces et compter les offres, en gardant seulement celles sans offres
+        $announcesWithoutOffers = $announces->each(function ($announce) {
+            $announce->offreCount = $announce->transportOffer->count();
+        })->filter(function ($announce) {
+            return $announce->offreCount === 0;
+        });
 
+       return view('shipper.announcements.useroffer', compact('announcesWithoutOffers'));
+    }
 
-           return redirect()->back()->with('message', 'Offre traitée avec succès.');
-       }
+        // Méthode pour gérer l'acceptation ou le refus d'une offre
+   public function handleOffer(Request $request, $offerId)
+   {
+       $offer = Offer::findOrFail($offerId);
+       return redirect()->back()->with('message', 'Offre traitée avec succès.');
+   }
 
 
    // Afficher le détail d'une annonce
@@ -150,10 +169,8 @@ class ShipperAnnouncementController extends Controller
        foreach ($carriersUser as $shipper){
            Mail::to($shipper->email)->send(new AnnouncementOffers($data));
        }
-
        return redirect()->route('shipper.announcements.create')->with('success', 'Annonce ajoutée avec succès.');
    }
-
 
    public function offer($id)
    {
@@ -334,6 +351,5 @@ class ShipperAnnouncementController extends Controller
         }
 
         return view('shipper.contract.contract_view', ['contract_id'=>$id, 'contract'=> $contractInfos, 'details'=>$contractDetails ]);
-
     }
 }

@@ -71,10 +71,9 @@
                                                                 <div class="card-2-bottom mt-30">
                                                                     <div class="row">
                                                                         <div class="col-lg-5 col-5 text-end">
-                                                                            @if(Session::get('fk_shipper_id') != 0)
-                                                                                <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm{{$announce->id}}">Postuler</div>
-                                                                            @endif
-                                                                            <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm{{$announce->id}}">Postuler à l'offre</div>
+                                                                        @if(Session::get('fk_carrier_id') != 0)
+                                                                            <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm{{$announce->id}}">Postuler</div>  
+                                                                        @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
